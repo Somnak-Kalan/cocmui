@@ -14,9 +14,10 @@
   }
 
   function parseHash() {
-    const raw = (global.location.hash || '#/dashboard').replace(/^#\/?/, '');
+    const defaultHash = Store.state.isAuthenticated ? '#/dashboard' : '#/login';
+    const raw = (global.location.hash || defaultHash).replace(/^#\/?/, '');
     const parts = raw.split('?');
-    const path = parts[0] || 'dashboard';
+    const path = parts[0] || (Store.state.isAuthenticated ? 'dashboard' : 'login');
     const query = {};
     if (parts[1]) {
       parts[1].split('&').forEach(function (kv) {
@@ -316,7 +317,7 @@
         '<a href="#/account-settings" class="dropdown-item">' + icon('settings', 15) + '<span>Account Settings (Restored)</span></a>' +
         '<a href="#/history" class="dropdown-item">' + icon('clock', 15) + '<span>Audit History (#111)</span></a>' +
         '<a href="#/help" class="dropdown-item">' + icon('help', 15) + '<span>Menu Inventory & Docs</span></a>' +
-        '<a href="#/login" class="dropdown-item">' + icon('logOut', 15) + '<span>Preview Sign-In Screen</span></a>';
+        '<a href="#/login" class="dropdown-item" data-action="logout">' + icon('logOut', 15) + '<span>Sign Out</span></a>';
     }
   }
 
@@ -337,7 +338,14 @@
 
   function renderRoute() {
     const parsed = parseHash();
-    const route = parsed.full || 'dashboard';
+    const route = parsed.full || (Store.state.isAuthenticated ? 'dashboard' : 'login');
+    if (!Store.state.isAuthenticated && route !== 'login') {
+      navigate('login');
+      return;
+    }
+    if (!Store.state.isAuthenticated && (!global.location.hash || global.location.hash === '#' || global.location.hash === '#/')) {
+      global.location.hash = '#/login';
+    }
     Store.state.currentRoute = route;
     if (global.document && global.document.documentElement) {
       global.document.documentElement.setAttribute('data-current-route', route);
@@ -489,6 +497,7 @@
         }
         const grpEl = toggle.closest('.nav-group');
         if (grpEl) grpEl.classList.toggle('is-open', Boolean(openSidebarGroups[gid]));
+        syncNavGlassActive();
       });
     }
 
@@ -569,6 +578,14 @@
       const goBtn = e.target.closest('[data-go]');
       if (goBtn) {
         navigate(goBtn.getAttribute('data-go'));
+      }
+
+      // Sign out action
+      const logoutBtn = e.target.closest('[data-action="logout"]');
+      if (logoutBtn) {
+        e.preventDefault();
+        Store.setAuth(false);
+        navigate('login');
       }
     });
 

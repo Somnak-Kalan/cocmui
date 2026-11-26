@@ -669,10 +669,9 @@
           id: 'sb-users',
           label: 'Users',
           icon: 'shield',
-          matchRoutes: ['usr-manage', 'usr-profile'],
+          matchRoutes: ['usr-manage'],
           children: [
-            { id: 'sb-usr-mng', label: 'User Management', route: 'usr-manage', minLevel: 2 },
-            { id: 'sb-usr-prof', label: 'User Profile', route: 'usr-profile' }
+            { id: 'sb-usr-mng', label: 'User Management', route: 'usr-manage', minLevel: 2 }
           ]
         },
         {

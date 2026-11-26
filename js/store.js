@@ -883,6 +883,23 @@
     }
   }
 
+  function loadSessionStorage(key, fallback) {
+    try {
+      const val = global.sessionStorage.getItem(key);
+      return val === null ? fallback : val;
+    } catch (_) {
+      return fallback;
+    }
+  }
+
+  function saveSessionStorage(key, val) {
+    try {
+      global.sessionStorage.setItem(key, String(val));
+    } catch (_) {
+      /* ignore file:// restricted storage */
+    }
+  }
+
   const initialRole = loadStorage(STORAGE_KEYS.role, 'admin');
   const initialReveal = loadStorage(STORAGE_KEYS.revealHidden, '1') !== '0';
 
@@ -893,9 +910,9 @@
     activeLeftTab: 'mainmenu',
     reviewRole: ROLE_PROFILES[initialRole] ? initialRole : 'admin',
     revealHidden: initialReveal,
-    isAuthenticated: loadStorage(STORAGE_KEYS.auth, '1') !== '0',
+    isAuthenticated: loadSessionStorage(STORAGE_KEYS.auth, '0') === '1',
     exchangeRate: 4100,
-    currentRoute: 'dashboard',
+    currentRoute: 'login',
     db: createInitialDB()
   };
 
@@ -1038,7 +1055,7 @@
 
     setAuth: function (loggedIn) {
       state.isAuthenticated = Boolean(loggedIn);
-      saveStorage(STORAGE_KEYS.auth, state.isAuthenticated ? '1' : '0');
+      saveSessionStorage(STORAGE_KEYS.auth, state.isAuthenticated ? '1' : '0');
       emit('auth');
     },
 

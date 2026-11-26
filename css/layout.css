@@ -327,6 +327,18 @@
   color: #60a5fa;
 }
 
+.nav-group.has-active:not(.is-open) > .nav-group__toggle,
+[data-theme="dark"] .nav-group.has-active:not(.is-open) > .nav-group__toggle {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.nav-group.has-active:not(.is-open) > .nav-group__toggle .nav-icon,
+[data-theme="dark"] .nav-group.has-active:not(.is-open) > .nav-group__toggle .nav-icon,
+.nav-group.has-active:not(.is-open) > .nav-group__toggle .nav-chevron {
+  color: #ffffff;
+}
+
 .nav-chevron {
   display: inline-flex;
   align-items: center;
