@@ -1000,6 +1000,9 @@
         }
 
         const isDarkNext = nextTheme === 'dark';
+        root.style.setProperty('--vt-x', x.toFixed(1) + 'px');
+        root.style.setProperty('--vt-y', y.toFixed(1) + 'px');
+        root.style.setProperty('--vt-r', maxR.toFixed(1) + 'px');
         root.classList.remove('vt-theme-expand', 'vt-theme-shrink');
         root.classList.add(isDarkNext ? 'vt-theme-shrink' : 'vt-theme-expand');
 
@@ -1009,29 +1012,15 @@
         });
         _activeThemeVT = vt;
 
-        if (vt && vt.ready && typeof vt.ready.then === 'function') {
-          vt.ready.then(function () {
-            if (_activeThemeVT !== vt) return;
-            const clipFrames = isDarkNext
-              ? ['circle(' + maxR + 'px at ' + x + 'px ' + y + 'px)', 'circle(0px at ' + x + 'px ' + y + 'px)']
-              : ['circle(0px at ' + x + 'px ' + y + 'px)', 'circle(' + maxR + 'px at ' + x + 'px ' + y + 'px)'];
-            _themeAnim = root.animate(
-              { clipPath: clipFrames },
-              {
-                duration: 380,
-                easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
-                fill: 'forwards',
-                pseudoElement: isDarkNext ? '::view-transition-old(root)' : '::view-transition-new(root)'
-              }
-            );
-          }).catch(function () {});
-        }
         if (vt && vt.finished && typeof vt.finished.finally === 'function') {
           vt.finished.finally(function () {
             if (_activeThemeVT === vt) {
               _activeThemeVT = null;
               _themeAnim = null;
               root.classList.remove('vt-theme-expand', 'vt-theme-shrink');
+              root.style.removeProperty('--vt-x');
+              root.style.removeProperty('--vt-y');
+              root.style.removeProperty('--vt-r');
             }
           });
         }
