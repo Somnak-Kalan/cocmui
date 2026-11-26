@@ -66,6 +66,68 @@
     return String(name || 'U').slice(0, 2).toUpperCase();
   }
 
+  const BRANCH_OPTIONS = [
+    { value: 'PP', label: 'PP (Phnom Penh)' },
+    { value: 'SHV', label: 'SHV (Sihanoukville)' }
+  ];
+
+  const CATEGORY_OPTIONS = [
+    { value: 'PP', label: 'PP' },
+    { value: 'SHV', label: 'SHV' }
+  ];
+
+  function normalizeBranchList(val) {
+    if (Array.isArray(val)) return val.filter(Boolean);
+    if (!val || typeof val !== 'string') return [];
+    const s = val.trim();
+    if (!s) return [];
+    if (s === 'All Branches' || s === 'All Categories') return ['PP', 'SHV'];
+    if (s.indexOf('Phnom Penh') !== -1) return ['PP'];
+    if (s.indexOf('Sihanoukville') !== -1) return ['SHV'];
+    return s.split(',').map(function (x) { return x.trim(); }).filter(Boolean);
+  }
+
+  function collectCheckedValues(container, name) {
+    if (!container) return [];
+    return Array.prototype.slice.call(container.querySelectorAll('input[name="' + name + '"]:checked')).map(function (el) {
+      return el.value;
+    });
+  }
+
+  function renderBranchCategoryCell(user) {
+    const branches = normalizeBranchList(user.branch_access);
+    const categories = normalizeBranchList(user.category_access);
+    if (!branches.length && !categories.length) {
+      return '<span class="text-muted">-</span>';
+    }
+    const branchHtml = branches.length
+      ? '<div style="display:flex;align-items:center;justify-content:center;gap:4px;flex-wrap:wrap;">' +
+          branches.map(function (b) {
+            return UI.badge(b, b === 'SHV' ? 'warning' : 'primary');
+          }).join('') +
+        '</div>'
+      : '<span class="text-muted">-</span>';
+    const catHtml = categories.length
+      ? '<div style="margin-top:4px;font-size:11px;color:var(--text-muted);display:flex;align-items:center;justify-content:center;gap:4px;flex-wrap:wrap;">' +
+          '<span>Cat:</span>' +
+          categories.map(function (c) {
+            return UI.badge(c, 'neutral');
+          }).join('') +
+        '</div>'
+      : '';
+    return '<div>' + branchHtml + catHtml + '</div>';
+  }
+
+  function buildBranchCategoryCheckboxesHtml(selectedList, name, options) {
+    const selected = normalizeBranchList(selectedList);
+    return '<div class="flex-row" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">' +
+      options.map(function (opt) {
+        const checked = selected.indexOf(opt.value) !== -1 ? ' checked' : '';
+        return '<label class="check-pill"><input type="checkbox" name="' + name + '" value="' + UI.esc(opt.value) + '"' + checked + '><span>' + UI.esc(opt.label) + '</span></label>';
+      }).join('') +
+    '</div>';
+  }
+
   function levelBadgeTone(level) {
     if (level === 'Admin') return 'danger';
     if (level === 'Manager') return 'primary';
@@ -413,6 +475,17 @@
           }
         },
         {
+          key: 'branch_access',
+          label: 'BRANCH',
+          align: 'center',
+          searchValue: function (r) {
+            return normalizeBranchList(r.branch_access).concat(normalizeBranchList(r.category_access)).join(' ');
+          },
+          render: function (r) {
+            return renderBranchCategoryCell(r);
+          }
+        },
+        {
           key: 'is_check',
           label: 'CHECK',
           align: 'center',
@@ -751,6 +824,15 @@
               '<div class="field"><span class="field__label">User Type <em>*</em></span>' +
                 UI.antdSelect({ name: 'us_type', value: 'Collector', options: typeOpts, searchable: true }) +
               '</div>' +
+              '<div class="field">' +
+                '<span class="field__label">Branch Access</span>' +
+                buildBranchCategoryCheckboxesHtml([], 'branch_access', BRANCH_OPTIONS) +
+              '</div>' +
+              '<div class="field">' +
+                '<span class="field__label">Category Access</span>' +
+                buildBranchCategoryCheckboxesHtml([], 'category_access', CATEGORY_OPTIONS) +
+                '<small class="text-muted" style="font-size:11px;margin-top:4px;display:block;">Allow viewing categories from other branch in Cost Expense tab</small>' +
+              '</div>' +
               '<label class="field field--span2"><span class="field__label">Motor Plate (Collector)</span><input class="input" type="text" name="motor_plate" placeholder="e.g. 1CI-2148 or Own Motor"></label>' +
               '<div class="field field--span2">' +
                 '<span class="field__label">Authentication Authority <em>*</em></span>' +
@@ -803,6 +885,8 @@
             const email = form.querySelector('[name="us_email"]').value.trim();
             const usLevel = form.querySelector('[name="us_level"]').value;
             const usType = form.querySelector('[name="us_type"]').value;
+            const branchAccess = collectCheckedValues(form, 'branch_access');
+            const categoryAccess = collectCheckedValues(form, 'category_access');
             const motorPlate = form.querySelector('[name="motor_plate"]').value.trim();
 
             if (!username || !password || !email) {
@@ -827,6 +911,8 @@
               email: email,
               us_level: usLevel,
               us_type: usType,
+              branch_access: branchAccess,
+              category_access: categoryAccess,
               motor_plate: motorPlate,
               active: true,
               is_online: false,
@@ -935,24 +1021,6 @@
       return { value: tp, label: tp };
     });
 
-    const branchOpts = [
-      { value: '', label: 'Select Branch Access' },
-      { value: 'Phnom Penh HQ', label: 'Phnom Penh HQ' },
-      { value: 'Sihanoukville Port', label: 'Sihanoukville Port' },
-      { value: 'Bavet Border', label: 'Bavet Border' },
-      { value: 'Poipet Border', label: 'Poipet Border' },
-      { value: 'All Branches', label: 'All Branches' }
-    ];
-
-    const categoryOpts = [
-      { value: '', label: 'Select Category Access' },
-      { value: 'General Logistics', label: 'General Logistics' },
-      { value: 'Customs Clearance', label: 'Customs Clearance' },
-      { value: 'Freight Forwarding', label: 'Freight Forwarding' },
-      { value: 'Trucking Services', label: 'Trucking Services' },
-      { value: 'All Categories', label: 'All Categories' }
-    ];
-
     const bodyHtml = '' +
       '<form id="usr-edit-user-form" class="antd-modal-form-grid" style="padding:4px 0;">' +
         '<div class="antd-form-item">' +
@@ -986,13 +1054,13 @@
         '<div class="antd-form-item">' +
           '<label class="antd-form-item__label">Branch Access</label>' +
           '<div class="antd-form-item__control">' +
-            UI.antdSelect({ name: 'branch_access', value: user.branch_access || '', options: branchOpts, searchable: true }) +
+            buildBranchCategoryCheckboxesHtml(user.branch_access, 'branch_access', BRANCH_OPTIONS) +
           '</div>' +
         '</div>' +
         '<div class="antd-form-item">' +
           '<label class="antd-form-item__label">Category Access</label>' +
           '<div class="antd-form-item__control">' +
-            UI.antdSelect({ name: 'category_access', value: user.category_access || '', options: categoryOpts, searchable: true }) +
+            buildBranchCategoryCheckboxesHtml(user.category_access, 'category_access', CATEGORY_OPTIONS) +
             '<div class="antd-form-item__help">Allow viewing categories from other branch in Cost Expense tab</div>' +
           '</div>' +
         '</div>' +
@@ -1036,8 +1104,8 @@
             const email = form.querySelector('[name="us_email"]') ? form.querySelector('[name="us_email"]').value.trim() : '';
             const usLevel = form.querySelector('[name="us_level"]') ? form.querySelector('[name="us_level"]').value : user.us_level;
             const usType = form.querySelector('[name="us_type"]') ? form.querySelector('[name="us_type"]').value : user.us_type;
-            const branchAccess = form.querySelector('[name="branch_access"]') ? form.querySelector('[name="branch_access"]').value : '';
-            const categoryAccess = form.querySelector('[name="category_access"]') ? form.querySelector('[name="category_access"]').value : '';
+            const branchAccess = collectCheckedValues(form, 'branch_access');
+            const categoryAccess = collectCheckedValues(form, 'category_access');
             const mpIn = form.querySelector('[name="motor_plate"]');
             const motorPlate = mpIn && mpIn.value ? mpIn.value.trim() : (user.motor_plate || '');
             const isCheck = form.querySelector('[name="is_check"]').checked;
@@ -1273,6 +1341,15 @@
 
     // ---------------- TAB 1: User Profile (Strictly User Profile data only, no unrelated forms) ----------------
     if (profileState.tab === 'user') {
+      const branches = normalizeBranchList(user.branch_access);
+      const categories = normalizeBranchList(user.category_access);
+      const branchBadgesHtml = branches.length
+        ? branches.map(function (b) { return UI.badge(b, b === 'SHV' ? 'warning' : 'primary'); }).join(' ')
+        : '<span class="text-muted">—</span>';
+      const categoryBadgesHtml = categories.length
+        ? categories.map(function (c) { return UI.badge(c, 'neutral'); }).join(' ')
+        : '<span class="text-muted">—</span>';
+
       contentHtml = '' +
         '<div class="profile-content-grid">' +
           '<div>' +
@@ -1295,6 +1372,8 @@
                 '<div class="antd-field-display"><label>Full name</label><div class="antd-field-display__value">' + UI.esc(user.fullname || '—') + '</div></div>' +
                 '<div class="antd-field-display"><label>Email address</label><div class="antd-field-display__value">' + UI.esc(user.email) + '</div></div>' +
                 '<div class="antd-field-display"><label>Motor plate</label><div class="antd-field-display__value">' + UI.esc(user.motor_plate || '—') + '</div></div>' +
+                '<div class="antd-field-display"><label>Branch access</label><div class="antd-field-display__value" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">' + branchBadgesHtml + '</div></div>' +
+                '<div class="antd-field-display"><label>Category access</label><div class="antd-field-display__value" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">' + categoryBadgesHtml + '</div></div>' +
                 '<div class="antd-field-display antd-field-display--locked"><label>User ID</label><div class="antd-field-display__value"><span class="lock-icon">' + ICONS('lock', 12) + '</span> #' + user.us_id + '</div></div>' +
                 '<div class="antd-field-display antd-field-display--locked"><label>Account type</label><div class="antd-field-display__value"><span class="lock-icon">' + ICONS('lock', 12) + '</span> ' + UI.esc(user.us_type || 'Unspecified') + '</div></div>' +
                 '<div class="antd-field-display antd-field-display--locked" style="grid-column:1/-1"><label>Account level</label><div class="antd-field-display__value"><span class="lock-icon">' + ICONS('lock', 12) + '</span> ' + UI.esc(user.us_level) + '</div></div>' +
