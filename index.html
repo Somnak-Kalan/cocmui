@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COCM Enterprise — Freight, Customs, Trucking & Accounting Platform</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/helpers.css">
+  <link rel="stylesheet" href="css/dashboard-cards.css">
+</head>
+<body>
+  <!-- Ambient Layered Lighting Canvas -->
+  <div id="ambient-canvas" aria-hidden="true">
+    <div class="ambient-orb ambient-orb--1"></div>
+    <div class="ambient-orb ambient-orb--2"></div>
+    <div class="ambient-orb ambient-orb--3"></div>
+    <div class="ambient-orb ambient-orb--4"></div>
+  </div>
+
+  <!-- Standalone Login View Host (v_login_new.php) -->
+  <div id="auth-root" class="auth-overlay-hidden"></div>
+
+  <!-- Authenticated SaaS App Shell -->
+  <div class="app-shell" id="app-shell">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar" aria-label="Primary Navigation">
+      <div class="sidebar__brand">
+        <a href="#/dashboard" class="brand-mark" title="COCM Control Center">
+          <span class="brand-mark__logo">
+            <img src="assets/tigron-official-transparent.png" alt="Tigron Logistics" class="brand-mark__logo-img">
+          </span>
+          <span class="brand-mark__text">
+            <strong class="brand-mark__title">COCM</strong>
+            <small class="brand-mark__sub">Control Center</small>
+          </span>
+        </a>
+      </div>
+
+      <div class="sidebar__scroll" id="sidebar-scroll">
+        <div class="sidebar-panel is-active" id="panel-mainmenu" data-panel="mainmenu"></div>
+      </div>
+
+      <div class="sidebar__footer" id="sidebar-footer"></div>
+    </aside>
+
+    <!-- Mobile Navigation Scrim -->
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+
+    <!-- Main Workspace Column -->
+    <div class="main-wrapper">
+      <header class="topbar" id="topbar">
+        <div class="topbar__left">
+          <button type="button" class="sidebar__collapse-btn" id="sidebar-collapse-btn" title="Collapse / Expand Sidebar" aria-label="Toggle Sidebar Width"></button>
+          <button type="button" class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open Navigation Menu"></button>
+          <button type="button" class="global-search-trigger" id="global-search-btn" title="Command Search (Ctrl+K)">
+            <span class="search-icon-slot" id="topbar-search-icon"></span>
+            <span class="search-placeholder">Search people, clients, listings, requests...</span>
+            <kbd>Ctrl K</kbd>
+          </button>
+        </div>
+
+        <div class="topbar__right">
+          <!-- Theme Switcher Pill [ ☼ Light ] / [ ☾ Dark ] -->
+          <button type="button" class="theme-pill-btn" id="theme-toggle-btn" aria-label="Toggle Light / Dark Mode" title="Switch Theme">
+            <span class="theme-pill__icon" id="theme-pill-icon"></span>
+            <span class="theme-pill__text" id="theme-pill-text">Light</span>
+          </button>
+
+          <!-- Notifications Popover -->
+          <div class="dropdown" id="notif-dropdown">
+            <button type="button" class="icon-circle-btn" id="notif-btn" aria-label="Notifications"></button>
+            <div class="dropdown-menu dropdown-menu--right dropdown-menu--wide" id="notif-menu"></div>
+          </div>
+
+          <!-- User Profile Dropdown -->
+          <div class="dropdown" id="profile-dropdown">
+            <button type="button" class="profile-trigger" id="profile-btn"></button>
+            <div class="dropdown-menu dropdown-menu--right" id="profile-menu"></div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Page Navigation Breadcrumb Bar (Below Header) -->
+      <div class="sub-breadcrumb-bar">
+        <nav class="breadcrumbs" id="breadcrumbs" aria-label="Breadcrumb"></nav>
+      </div>
+
+      <!-- Active Page Content Viewport -->
+      <main class="page-viewport page-animate" id="page-viewport"></main>
+
+      <!-- Sticky Utility Ticker Footer -->
+      <footer class="quick-footer" id="quick-footer"></footer>
+    </div>
+  </div>
+
+  <!-- Modal & Toast Hosts -->
+  <div id="modal-host"></div>
+  <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Core Scripts (file:// and http:// compatible) -->
+  <script src="js/store.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/components.js"></script>
+
+  <!-- Feature Modules -->
+  <script src="js/modules/auth_dashboard.js"></script>
+  <script src="js/modules/dashboard.js"></script>
+  <script src="js/modules/freight.js"></script>
+  <script src="js/modules/shipment.js"></script>
+  <script src="js/modules/charge.js"></script>
+  <script src="js/modules/customer.js"></script>
+  <script src="js/modules/accounting.js"></script>
+  <script src="js/modules/collector.js"></script>
+  <script src="js/modules/trucking.js"></script>
+  <script src="js/modules/fuel_repair.js"></script>
+  <script src="js/modules/extra_sheet.js"></script>
+  <script src="js/modules/invoicing.js"></script>
+  <script src="js/modules/reports.js"></script>
+  <script src="js/modules/settings_users.js"></script>
+
+  <!-- App Router & Shell Controller -->
+  <script src="js/app.js"></script>
+</body>
+</html>

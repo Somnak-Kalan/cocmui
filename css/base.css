@@ -1,0 +1,185 @@
+/* ==========================================================================
+   COCM Base Styles & Animated Ambient Lighting Backdrop
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  zoom: 0.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 133.34vh;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: var(--bg-canvas);
+  background-attachment: fixed;
+  overflow-x: hidden;
+  transition: color var(--dur-med) var(--ease-out);
+}
+
+a {
+  color: var(--brand-primary);
+  text-decoration: none;
+  transition: color var(--dur-fast) ease;
+}
+
+a:hover {
+  color: var(--brand-indigo);
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.text-muted { color: var(--text-muted); }
+.text-secondary { color: var(--text-secondary); }
+.text-success { color: var(--success); }
+.text-warning { color: var(--warning); }
+.text-danger { color: var(--danger); }
+.text-info { color: var(--info); }
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+
+/* Ambient backdrop: plain surface + login-style contour lines only */
+#ambient-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--system-backdrop);
+  background-attachment: fixed;
+}
+
+/* The tinted glow orbs are switched off — the workspace stays white */
+#ambient-canvas .ambient-orb {
+  display: none;
+}
+
+/* Login-style contour / wave line fans (system workspace only — the login
+   stage paints its own opaque backdrop, so it is never affected). */
+@keyframes systemContourDrift {
+  0%   { transform: translate3d(0, 0, 0) scale(1.03); }
+  100% { transform: translate3d(-16px, 12px, 0) scale(1.08); }
+}
+
+#ambient-canvas::before {
+  content: "";
+  position: absolute;
+  inset: -12%;
+  pointer-events: none;
+  background-image:
+    repeating-radial-gradient(ellipse 62% 54% at 0% 0%, transparent 0 40px, var(--system-line) 40px 41px),
+    repeating-radial-gradient(ellipse 58% 50% at 100% 100%, transparent 0 44px, var(--system-line-alt) 44px 45px);
+  -webkit-mask-image:
+    radial-gradient(74% 92% at 0% 0%, #000 0%, rgba(0, 0, 0, 0.55) 46%, transparent 82%),
+    radial-gradient(74% 92% at 100% 100%, #000 0%, rgba(0, 0, 0, 0.55) 46%, transparent 82%);
+  mask-image:
+    radial-gradient(74% 92% at 0% 0%, #000 0%, rgba(0, 0, 0, 0.55) 46%, transparent 82%),
+    radial-gradient(74% 92% at 100% 100%, #000 0%, rgba(0, 0, 0, 0.55) 46%, transparent 82%);
+  -webkit-mask-composite: source-over;
+  mask-composite: add;
+  animation: systemContourDrift 30s ease-in-out infinite alternate;
+}
+
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(88px);
+  opacity: 0.9;
+  will-change: transform;
+  animation: orbDrift 24s ease-in-out infinite alternate;
+}
+
+.ambient-orb--1 {
+  width: 520px;
+  height: 520px;
+  top: -140px;
+  left: -80px;
+  background: radial-gradient(circle, var(--orb-1), transparent 72%);
+}
+
+.ambient-orb--2 {
+  width: 600px;
+  height: 600px;
+  top: 12%;
+  right: -140px;
+  background: radial-gradient(circle, var(--orb-2), transparent 72%);
+  animation-delay: -6s;
+  animation-duration: 28s;
+}
+
+.ambient-orb--3 {
+  width: 480px;
+  height: 480px;
+  bottom: -140px;
+  left: 24%;
+  background: radial-gradient(circle, var(--orb-3), transparent 72%);
+  animation-delay: -12s;
+  animation-duration: 26s;
+}
+
+.ambient-orb--4 {
+  width: 420px;
+  height: 420px;
+  bottom: 18%;
+  left: 58%;
+  background: radial-gradient(circle, var(--orb-4), transparent 74%);
+  animation-delay: -18s;
+  animation-duration: 30s;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--ring-focus);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

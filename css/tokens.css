@@ -1,0 +1,227 @@
+/* ==========================================================================
+   COCM Design System Tokens — Light & Dark Glassmorphism Themes
+   ========================================================================== */
+
+:root,
+[data-theme="light"] {
+  --theme-mode: "light";
+
+  /* Typography */
+  --font-sans: "Plus Jakarta Sans", "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Battambang", "Khmer OS Siemreap", sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Code", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Background Canvas (Soft Clean Slate Blue-Gray) */
+  --bg-canvas: #f0f3f8;
+  --orb-1: rgba(29, 99, 237, 0.08);
+  --orb-2: rgba(239, 68, 68, 0.06);
+  --orb-3: rgba(29, 99, 237, 0.06);
+  --orb-4: rgba(239, 68, 68, 0.04);
+
+  /* System Workspace Backdrop — plain white with login-style contour lines */
+  --system-backdrop: #ffffff;
+  --system-line: rgba(37, 99, 235, 0.40);
+  --system-line-alt: rgba(219, 39, 119, 0.32);
+
+  /* Surfaces & Floating Cards */
+  --glass-bg: #ffffff;
+  --glass-bg-hover: #f8fafc;
+  --glass-bg-elevated: #ffffff;
+  --glass-bg-subtle: #f8fafc;
+  --glass-sidebar: #ffffff;
+  --sidebar-border: #e6ecf3;
+  --sidebar-brand-bg: transparent;
+  --sidebar-item-color: #64748b;
+  --sidebar-item-hover-bg: #f8fafc;
+  --sidebar-item-hover-color: #0f172a;
+  --sidebar-active-gradient: linear-gradient(90deg, #1d63ed 0%, #2563eb 100%);
+  --sidebar-active-shadow: 0 4px 14px rgba(29, 99, 237, 0.35);
+  --sidebar-section-color: #94a3b8;
+  --sidebar-tree-line: #e2e8f0;
+  --sidebar-count-bg: rgba(239, 68, 68, 0.12);
+  --sidebar-count-color: #ef4444;
+  --glass-header: #ffffff;
+  --glass-input: #ffffff;
+  --glass-input-focus: #ffffff;
+
+  /* Borders & Specular Highlights */
+  --border-glass: #e2e8f0;
+  --border-subtle: #edf2f7;
+  --border-strong: #cbd5e1;
+  --border-input: #e2e8f0;
+
+  /* Text Hierarchy */
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #94a3b8;
+  --text-faint: #cbd5e1;
+  --text-on-brand: #ffffff;
+
+  /* Brand Palette (Royal Blue + Vibrant Red) */
+  --brand-primary: #1d63ed;
+  --brand-indigo: #2563eb;
+  --brand-violet: #8b5cf6;
+  --brand-cyan: #0ea5e9;
+  --brand-red: #ef4444;
+  --brand-red-deep: #dc2626;
+  --gradient-primary: linear-gradient(90deg, #1d63ed 0%, #2563eb 100%);
+  --gradient-primary-hover: linear-gradient(90deg, #1e40af 0%, #1d4ed8 100%);
+  --gradient-accent: linear-gradient(135deg, #ff3366 0%, #ff4b2b 100%);
+  --gradient-soft: rgba(29, 99, 237, 0.08);
+
+  /* Semantic Status Colors */
+  --success: #10b981;
+  --success-bg: rgba(16, 185, 129, 0.10);
+  --success-border: rgba(16, 185, 129, 0.26);
+  --warning: #f59e0b;
+  --warning-bg: rgba(245, 158, 11, 0.10);
+  --warning-border: rgba(245, 158, 11, 0.28);
+  --danger: #ef4444;
+  --danger-bg: rgba(239, 68, 68, 0.12);
+  --danger-border: rgba(239, 68, 68, 0.30);
+  --info: #1d63ed;
+  --info-bg: rgba(29, 99, 237, 0.08);
+  --info-border: rgba(29, 99, 237, 0.24);
+  --violet: #8b5cf6;
+  --violet-bg: rgba(139, 92, 246, 0.10);
+  --violet-border: rgba(139, 92, 246, 0.26);
+
+  /* Table Alternating Column Tokens (Matching Reference UI 1:1) */
+  --table-head-odd: #505b72;
+  --table-head-even: #4a5469;
+  --table-head-bg: #4a5469;
+  --table-head-color: #ffffff;
+  --table-head-border: rgba(255, 255, 255, 0.16);
+  --table-col-odd: #f4f6f8;
+  --table-col-even: #eaedf1;
+  --table-col-odd-hover: #e9edf2;
+  --table-col-even-hover: #e0e5ec;
+  --table-row-divider: #ffffff;
+  --table-row-odd: #f4f6f8;
+  --table-row-even: #eaedf1;
+  --table-row-hover: #dfe5ec;
+  --table-stripe: #eaedf1;
+  --table-cell-border: rgba(220, 226, 235, 0.6);
+
+  /* Blur & Shadows */
+  --blur-md: blur(16px);
+  --blur-lg: blur(22px);
+  --blur-xl: blur(28px);
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.04);
+  --shadow-glass: 0 4px 20px rgba(15, 23, 42, 0.04);
+  --shadow-elevated: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --shadow-brand: 0 4px 14px rgba(29, 99, 237, 0.35);
+  --ring-focus: 0 0 0 3px rgba(29, 99, 237, 0.22);
+
+  /* Layout Dimensions & Radii */
+  --sidebar-width: 254px;
+  --sidebar-collapsed: 76px;
+  --header-height: 68px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-pill: 999px;
+
+  /* Motion Curves */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 150ms;
+  --dur-med: 220ms;
+  --dur-slow: 280ms;
+}
+
+/* ==========================================================================
+   Dark Mode Theme
+   ========================================================================== */
+[data-theme="dark"] {
+  --theme-mode: "dark";
+
+  --bg-canvas: #0b101d;
+  --orb-1: rgba(29, 99, 237, 0.14);
+  --orb-2: rgba(239, 68, 68, 0.10);
+  --orb-3: rgba(29, 99, 237, 0.12);
+  --orb-4: rgba(239, 68, 68, 0.08);
+
+  /* System Workspace Backdrop — deep night surface with contour lines */
+  --system-backdrop: #0b101d;
+  --system-line: rgba(255, 255, 255, 0.16);
+  --system-line-alt: rgba(255, 255, 255, 0.13);
+
+  --glass-bg: #111726;
+  --glass-bg-hover: #162035;
+  --glass-bg-elevated: #111726;
+  --glass-bg-subtle: #162035;
+  --glass-sidebar: #111726;
+  --sidebar-border: rgba(255, 255, 255, 0.07);
+  --sidebar-brand-bg: transparent;
+  --sidebar-item-color: #94a3b8;
+  --sidebar-item-hover-bg: rgba(255, 255, 255, 0.05);
+  --sidebar-item-hover-color: #ffffff;
+  --sidebar-active-gradient: linear-gradient(90deg, #1d63ed 0%, #2563eb 100%);
+  --sidebar-active-shadow: 0 4px 16px rgba(29, 99, 237, 0.40);
+  --sidebar-section-color: #64748b;
+  --sidebar-tree-line: rgba(255, 255, 255, 0.10);
+  --sidebar-count-bg: rgba(239, 68, 68, 0.20);
+  --sidebar-count-color: #f87171;
+  --glass-header: #111726;
+  --glass-input: #111726;
+  --glass-input-focus: #162035;
+
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-strong: rgba(255, 255, 255, 0.14);
+  --border-input: rgba(255, 255, 255, 0.12);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-faint: #64748b;
+
+  --brand-primary: #1d63ed;
+  --brand-indigo: #3b82f6;
+  --brand-violet: #a855f7;
+  --brand-cyan: #38bdf8;
+  --brand-red: #ef4444;
+  --brand-red-deep: #dc2626;
+  --gradient-primary: linear-gradient(90deg, #1d63ed 0%, #2563eb 100%);
+  --gradient-primary-hover: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%);
+  --gradient-accent: linear-gradient(135deg, #ff3366 0%, #ff4b2b 100%);
+  --gradient-soft: rgba(29, 99, 237, 0.16);
+
+  --success: #34d399;
+  --success-bg: rgba(52, 211, 153, 0.14);
+  --success-border: rgba(52, 211, 153, 0.30);
+  --warning: #fbbf24;
+  --warning-bg: rgba(251, 191, 36, 0.14);
+  --warning-border: rgba(251, 191, 36, 0.30);
+  --danger: #f87171;
+  --danger-bg: rgba(239, 68, 68, 0.22);
+  --danger-border: rgba(248, 113, 113, 0.36);
+  --info: #3b82f6;
+  --info-bg: rgba(59, 130, 246, 0.16);
+  --info-border: rgba(59, 130, 246, 0.32);
+  --violet: #a855f7;
+  --violet-bg: rgba(168, 85, 247, 0.16);
+  --violet-border: rgba(168, 85, 247, 0.32);
+
+  --table-head-odd: #273447;
+  --table-head-even: #1e293b;
+  --table-head-bg: #1e293b;
+  --table-head-color: #f8fafc;
+  --table-head-border: rgba(255, 255, 255, 0.08);
+  --table-col-odd: #131c2b;
+  --table-col-even: #192437;
+  --table-col-odd-hover: #1c293e;
+  --table-col-even-hover: #212f46;
+  --table-row-divider: #0b101d;
+  --table-row-odd: #131c2b;
+  --table-row-even: #192437;
+  --table-row-hover: #1e2d4a;
+  --table-stripe: #192437;
+  --table-cell-border: rgba(255, 255, 255, 0.06);
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-glass: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-elevated: 0 12px 36px rgba(0, 0, 0, 0.5);
+  --shadow-brand: 0 4px 16px rgba(29, 99, 237, 0.45);
+  --ring-focus: 0 0 0 3px rgba(29, 99, 237, 0.35);
+}
