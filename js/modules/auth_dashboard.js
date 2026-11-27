@@ -21,6 +21,101 @@
     return '' +
       '<div class="auth-stage">' +
         '<canvas id="auth-bg-canvas" class="auth-bg-canvas" aria-hidden="true"></canvas>' +
+        '<div class="auth-bg-ship-layer" aria-hidden="true">' +
+          '<svg viewBox="0 0 1440 520" class="auth-bg-ship-svg" preserveAspectRatio="xMidYMax slice" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+            '<defs>' +
+              '<linearGradient id="bgSeaGrad" x1="0" y1="360" x2="0" y2="520" gradientUnits="userSpaceOnUse">' +
+                '<stop offset="0%" stop-color="#0284c7" stop-opacity="0.34"/>' +
+                '<stop offset="100%" stop-color="#0f172a" stop-opacity="0.68"/>' +
+              '</linearGradient>' +
+              '<linearGradient id="bgHullGrad" x1="120" y1="295" x2="1320" y2="410" gradientUnits="userSpaceOnUse">' +
+                '<stop offset="0%" stop-color="#0f172a"/>' +
+                '<stop offset="55%" stop-color="#1e293b"/>' +
+                '<stop offset="100%" stop-color="#0f172a"/>' +
+              '</linearGradient>' +
+            '</defs>' +
+
+            '<!-- Back Ocean Swell (Full-bleed wavy edge, no flat cut) -->' +
+            '<path class="auth-sea-wave auth-sea-wave--back" d="M-400 388 Q-220 364 -40 388 T320 388 T680 388 T1040 388 T1400 388 T1760 388 L1840 620 L-400 620 Z" fill="#0ea5e9" opacity="0.22"/>' +
+
+            '<!-- Giant Europe/USA Mega Container Ship Sailing on the Sea -->' +
+            '<g class="auth-bg-ship-vessel">' +
+              '<!-- Stern Accommodation Tower & Bridge Wings -->' +
+              '<rect class="auth-ship-bridge" x="230" y="102" width="110" height="198" rx="5" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>' +
+              '<rect class="auth-ship-bridge-wing" x="214" y="114" width="142" height="18" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>' +
+              '<rect class="auth-ship-bridge-glass" x="224" y="118" width="122" height="10" rx="2" fill="#0f172a"/>' +
+              '<rect class="auth-ship-cabin-win" x="244" y="142" width="82" height="8" rx="2" fill="#94a3b8"/>' +
+              '<rect class="auth-ship-cabin-win" x="244" y="158" width="82" height="8" rx="2" fill="#94a3b8"/>' +
+              '<rect class="auth-ship-cabin-win" x="244" y="174" width="82" height="8" rx="2" fill="#94a3b8"/>' +
+              '<rect class="auth-ship-cabin-win" x="244" y="190" width="82" height="8" rx="2" fill="#94a3b8"/>' +
+              '<rect class="auth-ship-cabin-win" x="244" y="206" width="82" height="8" rx="2" fill="#94a3b8"/>' +
+              '<!-- Radar Mast & Satcom Dome -->' +
+              '<line x1="285" y1="102" x2="285" y2="52" stroke="#475569" stroke-width="5" stroke-linecap="round"/>' +
+              '<line x1="260" y1="68" x2="310" y2="68" stroke="#f97316" stroke-width="4" stroke-linecap="round"/>' +
+              '<circle class="auth-ship-beacon" cx="285" cy="48" r="6" fill="#f97316"/>' +
+              '<circle cx="255" cy="94" r="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>' +
+              '<!-- Funnel & Exhaust -->' +
+              '<rect x="176" y="154" width="38" height="146" rx="5" fill="#dc2626"/>' +
+              '<rect x="176" y="154" width="38" height="24" rx="4" fill="#0f172a"/>' +
+              '<circle cx="170" cy="138" r="9" fill="#ffffff" opacity="0.4" class="auth-ship-smoke auth-ship-smoke--1"/>' +
+              '<circle cx="152" cy="120" r="13" fill="#ffffff" opacity="0.28" class="auth-ship-smoke auth-ship-smoke--2"/>' +
+
+              '<!-- Deck Cranes -->' +
+              '<path d="M560 296 L560 118 L628 162" stroke="#f59e0b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>' +
+              '<path d="M950 296 L950 118 L1018 162" stroke="#f59e0b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>' +
+
+              '<!-- Mega Container Stacks (5 Tiers of 40ft Containers) -->' +
+              '<!-- Tier 1 -->' +
+              '<rect x="356" y="262" width="128" height="36" rx="2" fill="#0284c7" stroke="#e0f2fe" stroke-width="1.5"/>' +
+              '<rect x="488" y="262" width="128" height="36" rx="2" fill="#f97316" stroke="#ffedd5" stroke-width="1.5"/>' +
+              '<rect x="620" y="262" width="128" height="36" rx="2" fill="#4f46e5" stroke="#e0e7ff" stroke-width="1.5"/>' +
+              '<rect x="752" y="262" width="128" height="36" rx="2" fill="#059669" stroke="#d1fae5" stroke-width="1.5"/>' +
+              '<rect x="884" y="262" width="128" height="36" rx="2" fill="#e11d48" stroke="#ffe4e6" stroke-width="1.5"/>' +
+              '<rect x="1016" y="262" width="128" height="36" rx="2" fill="#0ea5e9" stroke="#e0f2fe" stroke-width="1.5"/>' +
+              '<rect x="1148" y="262" width="110" height="36" rx="2" fill="#1e40af" stroke="#dbeafe" stroke-width="1.5"/>' +
+              '<!-- Tier 2 -->' +
+              '<rect x="366" y="224" width="128" height="36" rx="2" fill="#e11d48" stroke="#ffe4e6" stroke-width="1.5"/>' +
+              '<rect x="498" y="224" width="128" height="36" rx="2" fill="#0ea5e9" stroke="#e0f2fe" stroke-width="1.5"/>' +
+              '<rect x="630" y="224" width="128" height="36" rx="2" fill="#f59e0b" stroke="#fef3c7" stroke-width="1.5"/>' +
+              '<rect x="762" y="224" width="128" height="36" rx="2" fill="#6366f1" stroke="#e0e7ff" stroke-width="1.5"/>' +
+              '<rect x="894" y="224" width="128" height="36" rx="2" fill="#10b981" stroke="#d1fae5" stroke-width="1.5"/>' +
+              '<rect x="1026" y="224" width="128" height="36" rx="2" fill="#f97316" stroke="#ffedd5" stroke-width="1.5"/>' +
+              '<rect x="1158" y="224" width="90" height="36" rx="2" fill="#0284c7" stroke="#e0f2fe" stroke-width="1.5"/>' +
+              '<!-- Tier 3 -->' +
+              '<rect x="380" y="186" width="126" height="36" rx="2" fill="#10b981" stroke="#d1fae5" stroke-width="1.5"/>' +
+              '<rect x="510" y="186" width="126" height="36" rx="2" fill="#f97316" stroke="#ffedd5" stroke-width="1.5"/>' +
+              '<rect x="640" y="186" width="126" height="36" rx="2" fill="#2563eb" stroke="#dbeafe" stroke-width="1.5"/>' +
+              '<rect x="770" y="186" width="126" height="36" rx="2" fill="#e11d48" stroke="#ffe4e6" stroke-width="1.5"/>' +
+              '<rect x="900" y="186" width="126" height="36" rx="2" fill="#0284c7" stroke="#e0f2fe" stroke-width="1.5"/>' +
+              '<rect x="1030" y="186" width="126" height="36" rx="2" fill="#4f46e5" stroke="#e0e7ff" stroke-width="1.5"/>' +
+              '<!-- Tier 4 -->' +
+              '<rect x="404" y="148" width="124" height="36" rx="2" fill="#6366f1" stroke="#e0e7ff" stroke-width="1.5"/>' +
+              '<rect x="532" y="148" width="124" height="36" rx="2" fill="#f59e0b" stroke="#fef3c7" stroke-width="1.5"/>' +
+              '<rect x="660" y="148" width="124" height="36" rx="2" fill="#059669" stroke="#d1fae5" stroke-width="1.5"/>' +
+              '<rect x="788" y="148" width="124" height="36" rx="2" fill="#f97316" stroke="#ffedd5" stroke-width="1.5"/>' +
+              '<rect x="916" y="148" width="124" height="36" rx="2" fill="#e11d48" stroke="#ffe4e6" stroke-width="1.5"/>' +
+              '<!-- Tier 5 (Top) -->' +
+              '<rect x="444" y="110" width="120" height="36" rx="2" fill="#0ea5e9" stroke="#e0f2fe" stroke-width="1.5"/>' +
+              '<rect x="568" y="110" width="120" height="36" rx="2" fill="#dc2626" stroke="#fee2e2" stroke-width="1.5"/>' +
+              '<rect x="692" y="110" width="120" height="36" rx="2" fill="#2563eb" stroke="#dbeafe" stroke-width="1.5"/>' +
+              '<rect x="816" y="110" width="120" height="36" rx="2" fill="#10b981" stroke="#d1fae5" stroke-width="1.5"/>' +
+
+              '<!-- Mega Ship Hull, Bulbous Bow & Waterline -->' +
+              '<path d="M112 298 L1356 298 L1276 398 L156 398 Z" fill="url(#bgHullGrad)"/>' +
+              '<path d="M142 366 L1302 366 L1276 398 L156 398 Z" fill="#dc2626"/>' +
+              '<line x1="180" y1="322" x2="1285" y2="322" stroke="#f8fafc" stroke-width="2" opacity="0.45"/>' +
+              '<circle cx="1272" cy="340" r="8" fill="#cbd5e1" opacity="0.7"/>' +
+              '<!-- Bow Spray & Wake -->' +
+              '<path class="auth-ship-wake" d="M1262 396 Q1315 376 1356 396 Q1310 404 1262 396 Z" fill="#ffffff" opacity="0.75"/>' +
+              '<path class="auth-ship-wake" d="M110 396 Q145 384 176 396" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity="0.6"/>' +
+            '</g>' +
+
+            '<!-- Front Rolling Ocean Waves (Full-bleed wavy paths, no flat rectangle cut) -->' +
+            '<path class="auth-sea-wave auth-sea-wave--mid" d="M-400 396 Q-220 374 -40 396 T320 396 T680 396 T1040 396 T1400 396 T1760 396 L1840 620 L-400 620 Z" fill="url(#bgSeaGrad)"/>' +
+            '<path class="auth-sea-wave auth-sea-wave--front" d="M-400 416 Q-180 394 40 416 T480 416 T920 416 T1360 416 T1800 416 L1840 620 L-400 620 Z" fill="#38bdf8" opacity="0.18"/>' +
+            '<path class="auth-sea-wave auth-sea-wave--crest" d="M-400 434 Q-160 416 80 434 T560 434 T1040 434 T1520 434 T1840 434 L1840 620 L-400 620 Z" fill="#ffffff" opacity="0.16"/>' +
+          '</svg>' +
+        '</div>' +
         '<div class="auth-split">' +
           '<div class="auth-card-water-sheen" aria-hidden="true"></div>' +
           '<div class="auth-hero">' +
@@ -34,60 +129,115 @@
               '<span class="auth-suite-tag">COCM SUITE</span>' +
             '</div>' +
 
-            '<div class="auth-robot-stage" aria-hidden="true">' +
-              '<div class="auth-robot-halo auth-robot-halo--outer"></div>' +
-              '<div class="auth-robot-halo auth-robot-halo--inner"></div>' +
-              '<div class="auth-robot-float">' +
-                '<svg viewBox="0 0 220 220" class="auth-robot-svg" fill="none" xmlns="http://www.w3.org/2000/svg">' +
-                  '<defs>' +
-                    '<linearGradient id="botBody" x1="60" y1="70" x2="160" y2="185" gradientUnits="userSpaceOnUse">' +
-                      '<stop offset="0%" stop-color="#ffffff"/>' +
-                      '<stop offset="100%" stop-color="#e2e8f0"/>' +
-                    '</linearGradient>' +
-                    '<linearGradient id="botVisor" x1="68" y1="68" x2="152" y2="108" gradientUnits="userSpaceOnUse">' +
-                      '<stop offset="0%" stop-color="#0f172a"/>' +
-                      '<stop offset="100%" stop-color="#1e293b"/>' +
-                    '</linearGradient>' +
-                    '<linearGradient id="botAccent" x1="80" y1="125" x2="140" y2="165" gradientUnits="userSpaceOnUse">' +
-                      '<stop offset="0%" stop-color="#f97316"/>' +
-                      '<stop offset="100%" stop-color="#6366f1"/>' +
-                    '</linearGradient>' +
-                  '</defs>' +
-                  '<!-- Antenna -->' +
-                  '<line x1="110" y1="44" x2="110" y2="26" stroke="#334155" stroke-width="4" stroke-linecap="round"/>' +
-                  '<circle cx="110" cy="22" r="7" class="auth-robot-beacon" fill="#f97316"/>' +
-                  '<circle cx="110" cy="22" r="13" class="auth-robot-beacon-ring" stroke="#f97316" stroke-width="2" opacity="0.5"/>' +
-                  '<!-- Left Ear -->' +
-                  '<rect x="46" y="74" width="12" height="26" rx="6" fill="#6366f1"/>' +
-                  '<!-- Right Ear -->' +
-                  '<rect x="162" y="74" width="12" height="26" rx="6" fill="#6366f1"/>' +
-                  '<!-- Head -->' +
-                  '<rect x="56" y="44" width="108" height="72" rx="28" fill="url(#botBody)" stroke="#ffffff" stroke-width="3"/>' +
-                  '<!-- Visor -->' +
-                  '<rect x="68" y="60" width="84" height="40" rx="16" fill="url(#botVisor)"/>' +
-                  '<!-- Eyes -->' +
-                  '<g class="auth-robot-eyes">' +
-                    '<rect x="84" y="73" width="14" height="14" rx="7" fill="#38bdf8"/>' +
-                    '<rect x="122" y="73" width="14" height="14" rx="7" fill="#38bdf8"/>' +
-                  '</g>' +
-                  '<!-- Smile -->' +
-                  '<path d="M101 90 Q110 96 119 90" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>' +
-                  '<!-- Neck -->' +
-                  '<rect x="96" y="114" width="28" height="10" rx="4" fill="#cbd5e1"/>' +
-                  '<!-- Left Arm -->' +
-                  '<rect x="42" y="128" width="18" height="42" rx="9" fill="url(#botBody)" stroke="#ffffff" stroke-width="2"/>' +
-                  '<!-- Right Arm (Waving) -->' +
-                  '<g class="auth-robot-arm">' +
-                    '<rect x="160" y="110" width="18" height="44" rx="9" transform="rotate(-24 169 132)" fill="url(#botBody)" stroke="#ffffff" stroke-width="2"/>' +
-                  '</g>' +
-                  '<!-- Torso -->' +
-                  '<rect x="64" y="122" width="92" height="62" rx="22" fill="url(#botBody)" stroke="#ffffff" stroke-width="3"/>' +
-                  '<!-- Chest Core -->' +
-                  '<rect x="86" y="138" width="48" height="24" rx="12" fill="#0f172a" opacity="0.08"/>' +
-                  '<circle cx="110" cy="150" r="9" class="auth-robot-core" fill="url(#botAccent)"/>' +
-                '</svg>' +
+            '<div class="auth-robot-stage auth-freight-stage" aria-hidden="true">' +
+              '<div class="auth-usa-road-wrap">' +
+                '<div class="auth-usa-road">' +
+                  '<div class="auth-usa-road__shoulder auth-usa-road__shoulder--top"></div>' +
+                  '<div class="auth-usa-road__double-yellow"></div>' +
+                  '<div class="auth-usa-road__dashes"></div>' +
+                  '<div class="auth-usa-road__shoulder auth-usa-road__shoulder--bottom"></div>' +
+                '</div>' +
+                '<div class="auth-truck-runner">' +
+                  '<svg viewBox="0 0 360 155" class="auth-big-truck-svg" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+                    '<defs>' +
+                      '<linearGradient id="bigTrailer" x1="16" y1="20" x2="225" y2="115" gradientUnits="userSpaceOnUse">' +
+                        '<stop offset="0%" stop-color="#ffffff"/>' +
+                        '<stop offset="100%" stop-color="#e2e8f0"/>' +
+                      '</linearGradient>' +
+                      '<linearGradient id="bigCab" x1="230" y1="28" x2="338" y2="122" gradientUnits="userSpaceOnUse">' +
+                        '<stop offset="0%" stop-color="#ff7a18"/>' +
+                        '<stop offset="100%" stop-color="#ea580c"/>' +
+                      '</linearGradient>' +
+                      '<linearGradient id="bigBeam" x1="336" y1="92" x2="360" y2="92" gradientUnits="userSpaceOnUse">' +
+                        '<stop offset="0%" stop-color="#fde047" stop-opacity="0.85"/>' +
+                        '<stop offset="100%" stop-color="#fde047" stop-opacity="0"/>' +
+                      '</linearGradient>' +
+                    '</defs>' +
+                    '<g class="auth-truck-chassis">' +
+                      '<!-- Wind / Speed Streaks -->' +
+                      '<g class="auth-truck-wind">' +
+                        '<line x1="2" y1="44" x2="22" y2="44" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.75"/>' +
+                        '<line x1="0" y1="68" x2="18" y2="68" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>' +
+                      '</g>' +
+
+                      '<!-- Exhaust Stack & Puffs -->' +
+                      '<rect x="226" y="14" width="7" height="38" rx="3.5" fill="#475569"/>' +
+                      '<circle cx="220" cy="10" r="5" fill="#ffffff" class="auth-exhaust-puff auth-exhaust-puff--1"/>' +
+                      '<circle cx="208" cy="6" r="6.5" fill="#ffffff" class="auth-exhaust-puff auth-exhaust-puff--2"/>' +
+
+                      '<!-- Big 40ft Container Trailer -->' +
+                      '<rect class="auth-truck-trailer-body" x="18" y="24" width="204" height="86" rx="8" fill="url(#bigTrailer)" stroke="#ffffff" stroke-width="3"/>' +
+                      '<rect x="18" y="88" width="204" height="12" fill="#4f46e5"/>' +
+                      '<rect x="18" y="80" width="204" height="8" fill="#f97316"/>' +
+                      '<!-- Container Corrugation Ribs -->' +
+                      '<line class="auth-truck-rib" x1="44" y1="32" x2="44" y2="74" stroke="#cbd5e1" stroke-width="2.5" stroke-linecap="round"/>' +
+                      '<line class="auth-truck-rib" x1="68" y1="32" x2="68" y2="74" stroke="#cbd5e1" stroke-width="2.5" stroke-linecap="round"/>' +
+                      '<line class="auth-truck-rib" x1="92" y1="32" x2="92" y2="74" stroke="#cbd5e1" stroke-width="2.5" stroke-linecap="round"/>' +
+                      '<line class="auth-truck-rib" x1="116" y1="32" x2="116" y2="74" stroke="#cbd5e1" stroke-width="2.5" stroke-linecap="round"/>' +
+                      '<line class="auth-truck-rib" x1="140" y1="32" x2="140" y2="74" stroke="#cbd5e1" stroke-width="2.5" stroke-linecap="round"/>' +
+                      '<line class="auth-truck-rib" x1="164" y1="32" x2="164" y2="74" stroke="#cbd5e1" stroke-width="2.5" stroke-linecap="round"/>' +
+                      '<line class="auth-truck-rib" x1="188" y1="32" x2="188" y2="74" stroke="#cbd5e1" stroke-width="2.5" stroke-linecap="round"/>' +
+                      '<image class="auth-truck-logo-img" href="assets/tigron-official-transparent.png" x="54" y="32" width="132" height="44" preserveAspectRatio="xMidYMid meet"/>' +
+
+                      '<!-- Heavy Chassis Frame -->' +
+                      '<rect x="16" y="108" width="318" height="10" rx="4" fill="#0f172a"/>' +
+
+                      '<!-- Heavy Tractor Cab (USA / European Highway Style) -->' +
+                      '<path d="M234 32 L288 32 C302 32 312 40 318 54 L332 78 C336 84 338 90 338 98 L338 114 L234 114 Z" fill="url(#bigCab)" stroke="#ffffff" stroke-width="2.5"/>' +
+                      '<!-- Roof Aerodynamic Spoiler -->' +
+                      '<path d="M234 24 L276 24 L288 32 L234 32 Z" fill="#ea580c" stroke="#ffffff" stroke-width="1.5"/>' +
+                      '<!-- Windshield & Side Window -->' +
+                      '<path d="M276 42 L296 42 C304 42 310 48 314 58 L320 72 L276 72 Z" fill="#0f172a"/>' +
+                      '<rect x="244" y="42" width="24" height="30" rx="4" fill="#1e293b"/>' +
+                      '<line x1="284" y1="48" x2="296" y2="62" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" opacity="0.75"/>' +
+                      '<!-- Front Grille & Headlight -->' +
+                      '<rect x="318" y="80" width="16" height="22" rx="3" fill="#0f172a"/>' +
+                      '<line x1="321" y1="86" x2="331" y2="86" stroke="#64748b" stroke-width="2"/>' +
+                      '<line x1="321" y1="92" x2="331" y2="92" stroke="#64748b" stroke-width="2"/>' +
+                      '<line x1="321" y1="98" x2="331" y2="98" stroke="#64748b" stroke-width="2"/>' +
+                      '<rect class="auth-truck-headlight" x="331" y="88" width="9" height="9" rx="2" fill="#fde047"/>' +
+                      '<polygon class="auth-truck-beam" points="340,88 360,82 360,104 340,97" fill="url(#bigBeam)"/>' +
+                      '<rect x="312" y="106" width="29" height="10" rx="3" fill="#334155"/>' +
+
+                      '<!-- Wheel 1 (Trailer Rear) -->' +
+                      '<g class="auth-truck-wheel">' +
+                        '<circle cx="54" cy="122" r="20" fill="#0f172a" stroke="#334155" stroke-width="3"/>' +
+                        '<circle cx="54" cy="122" r="10" fill="#e2e8f0"/>' +
+                        '<line x1="54" y1="112" x2="54" y2="132" stroke="#475569" stroke-width="2.5"/>' +
+                        '<line x1="44" y1="122" x2="64" y2="122" stroke="#475569" stroke-width="2.5"/>' +
+                        '<circle cx="54" cy="122" r="3" fill="#f97316"/>' +
+                      '</g>' +
+
+                      '<!-- Wheel 2 (Trailer Tandem) -->' +
+                      '<g class="auth-truck-wheel">' +
+                        '<circle cx="102" cy="122" r="20" fill="#0f172a" stroke="#334155" stroke-width="3"/>' +
+                        '<circle cx="102" cy="122" r="10" fill="#e2e8f0"/>' +
+                        '<line x1="102" y1="112" x2="102" y2="132" stroke="#475569" stroke-width="2.5"/>' +
+                        '<line x1="92" y1="122" x2="112" y2="122" stroke="#475569" stroke-width="2.5"/>' +
+                        '<circle cx="102" cy="122" r="3" fill="#f97316"/>' +
+                      '</g>' +
+
+                      '<!-- Wheel 3 (Tractor Drive) -->' +
+                      '<g class="auth-truck-wheel">' +
+                        '<circle cx="250" cy="122" r="20" fill="#0f172a" stroke="#334155" stroke-width="3"/>' +
+                        '<circle cx="250" cy="122" r="10" fill="#e2e8f0"/>' +
+                        '<line x1="250" y1="112" x2="250" y2="132" stroke="#475569" stroke-width="2.5"/>' +
+                        '<line x1="240" y1="122" x2="260" y2="122" stroke="#475569" stroke-width="2.5"/>' +
+                        '<circle cx="250" cy="122" r="3" fill="#f97316"/>' +
+                      '</g>' +
+
+                      '<!-- Wheel 4 (Tractor Front Steer) -->' +
+                      '<g class="auth-truck-wheel">' +
+                        '<circle cx="304" cy="122" r="20" fill="#0f172a" stroke="#334155" stroke-width="3"/>' +
+                        '<circle cx="304" cy="122" r="10" fill="#e2e8f0"/>' +
+                        '<line x1="304" y1="112" x2="304" y2="132" stroke="#475569" stroke-width="2.5"/>' +
+                        '<line x1="294" y1="122" x2="314" y2="122" stroke="#475569" stroke-width="2.5"/>' +
+                        '<circle cx="304" cy="122" r="3" fill="#f97316"/>' +
+                      '</g>' +
+                    '</g>' +
+                  '</svg>' +
+                '</div>' +
               '</div>' +
-              '<div class="auth-robot-shadow"></div>' +
             '</div>' +
 
             '<div class="auth-hero__content">' +
@@ -487,9 +637,10 @@
     }
 
     function onMove(e) {
+      const zoom = parseFloat(global.getComputedStyle(global.document.documentElement).zoom) || 1;
       const rect = canvas.getBoundingClientRect();
-      const nx = e.clientX - rect.left;
-      const ny = e.clientY - rect.top;
+      const nx = (e.clientX - rect.left) / zoom;
+      const ny = (e.clientY - rect.top) / zoom;
       mouse.vx = nx - (mouse.active ? mouse.x : nx);
       mouse.vy = ny - (mouse.active ? mouse.y : ny);
       mouse.x = nx;
@@ -497,10 +648,11 @@
       mouse.active = true;
 
       const now = Date.now();
-      if (now - lastRippleTime > 75 && (Math.abs(mouse.vx) > 2 || Math.abs(mouse.vy) > 2)) {
+      if (now - lastRippleTime > 55 && (Math.abs(mouse.vx) > 1.5 || Math.abs(mouse.vy) > 1.5)) {
         lastRippleTime = now;
-        ripples.push({ x: nx, y: ny, r: 8, maxR: 150 + Math.random() * 60, alpha: 0.42 });
-        if (ripples.length > 14) ripples.shift();
+        ripples.push({ x: nx, y: ny, r: 6, maxR: 160 + Math.random() * 70, alpha: 0.55 });
+        ripples.push({ x: nx, y: ny, r: 2, maxR: 110 + Math.random() * 45, alpha: 0.35 });
+        if (ripples.length > 22) ripples.splice(0, ripples.length - 22);
       }
     }
 
